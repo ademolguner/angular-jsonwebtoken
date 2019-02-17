@@ -1,0 +1,34 @@
+ 
+    <form [(formGroup)]="loginForm" (ngSubmit)="login()" class="form-login">
+      <h2 class="mt-5">Giriş Yap</h2>
+      <div class="form-group">
+        <input type="text" id="userName" name="userName" formControlName="userName" class="form-control"
+          placeholder="Kullanıcı adı" autofocus>
+        <span class="help-block"
+          *ngIf="loginForm.get('userName').hasError('required') && loginForm.get('userName').touched">
+          Kullanıcı adı gerekli
+        </span>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" name="password" formControlName="password" class="form-control"
+          placeholder="Şifre">
+        <span class="help-block"
+          *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+          Şifre gerekli
+        </span>
+        <span class="help-block"
+          *ngIf="loginForm.get('password').hasError('minlength') && loginForm.get('password').touched">
+          Şifre en az 4 karakter olmalıdır
+        </span>
+        <span class="help-block"
+          *ngIf="loginForm.get('password').hasError('maxlength') && loginForm.get('password').touched">
+          Şifre 8 karakteri geçemez
+        </span>
+
+      </div> 
+      <button class="btn btn-lg btn-primary btn-block" [disabled]="!loginForm.valid" type="submit">login</button>
+      <h6>{{loginForm.value|json}}</h6>
+      <h6>{{loginForm.status|json}}</h6>
+    </form>
+ 
+ 
